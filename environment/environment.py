@@ -31,7 +31,9 @@ def agent_down(i,j):
 			j = j - 1
 			plt.plot(i,j,'ro')
 			plt.show()
-				
+
+def test_down():
+	assert agent_down(5,-1) == (5,0)			
 
 def agent_left(i,j):
 	for x in range(len(world)):
