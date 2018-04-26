@@ -135,9 +135,9 @@ def waypoints(number_waypoints):
 	for i in range(number_waypoints):	#pairing the x and y coordinates 
 		waypoint = x_coordinate[i], y_coordinate[i]
 		waypoints.append(waypoint)
-	print x_coordinate
-	print y_coordinate
-	print waypoints
+	print (x_coordinate)
+	print (y_coordinate)
+	print (waypoints)
 	
 tests()
 '''Initialize start locations'''
