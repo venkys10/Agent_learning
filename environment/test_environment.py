@@ -139,5 +139,4 @@ def waypoints(number_waypoints):
 	print (y_coordinate)
 	print (waypoints)
 	
-tests()
 '''Initialize start locations'''
