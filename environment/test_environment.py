@@ -139,4 +139,9 @@ def waypoints(number_waypoints):
 	print (y_coordinate)
 	print (waypoints)
 	
-'''Initialize start locations'''
+'''Initialize end locations'''
+def end_location():
+	"""Agent collects the waypoints and goes to these coordinates"""
+	x_coordinate = random.choice(range(len(world)))
+	y_coordinate = random.choice(range(len(world)))
+	end_location = x_coordinate, y_coordinate
