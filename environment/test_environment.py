@@ -7,12 +7,12 @@ import random
 
 '''Initialize agent environment'''
 """This sets up the environment by generating a grid within which the agent must act."""
-world = np.full((100,100), float(0))
+reward = np.full((100,100), float(0))
 
 '''Initialize agent motion'''
 """The motion of the agent when it is supposed to move up by one step at a time."""
 def agent_up(i,j):
-	for x in range(len(world)):
+	for x in range(len(reward)):
 		#pdb.set_trace()
 		if j >= 100:
 			j = 100 
@@ -31,7 +31,7 @@ def agent_up(i,j):
 
 """The motion of the agent when it is supposed to move down by one step at a time."""
 def agent_down(i,j):
-	for x in range(len(world)):
+	for x in range(len(reward)):
 		if j >= 100:
 			j = 100 
 		elif j <= 0:
@@ -84,7 +84,7 @@ def tests():
 
 """The motion of the agent when it is supposed to move left by one step at a time."""
 def agent_left(i,j):
-	for x in range(len(world)): 
+	for x in range(len(reward)): 
 		if i >= 100:
 			i = 100
 		elif i <= 0:
@@ -102,7 +102,7 @@ def agent_left(i,j):
 
 """The motion of the agent when it is supposed to move right by one step at a time."""
 def agent_right(i,j):
-	for x in range(len(world)):
+	for x in range(len(reward)):
 		if j >= 100:
 			j = 100 
 		elif j <= 0:
@@ -126,22 +126,23 @@ def waypoints(number_waypoints):
 	y_coordinate = []
 	waypoints = []
 	for i in range(number_waypoints):	#generates required number of waypoints
-		x_coord = random.choice(range(len(world)))   #randomly chooses a number from 0,100 in this case
+		x_coord = random.choice(range(len(reward)))   #randomly chooses a number from 0,100 in this case
 		x_coordinate.append(x_coord)
 	for j in range(number_waypoints):
-		y_coord = random.choice(range(len(world)))
+		y_coord = random.choice(range(len(reward)))
 		y_coordinate.append(y_coord)
 
 	for i in range(number_waypoints):	#pairing the x and y coordinates 
-		waypoint = x_coordinate[i], y_coordinate[i]
+		waypoint = [x_coordinate[i], y_coordinate[i]]
 		waypoints.append(waypoint)
-	print (x_coordinate)
-	print (y_coordinate)
-	print (waypoints)
+	#print (x_coordinate)
+	#print (y_coordinate)
+	return (waypoints)
 	
 '''Initialize end locations'''
 def end_location():
 	"""Agent collects the waypoints and goes to these coordinates"""
-	x_coordinate = random.choice(range(len(world)))
-	y_coordinate = random.choice(range(len(world)))
+	x_coordinate = random.choice(range(len(reward)))
+	y_coordinate = random.choice(range(len(reward)))
 	end_location = x_coordinate, y_coordinate
+	return (end_location)
