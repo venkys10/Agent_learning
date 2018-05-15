@@ -1,4 +1,4 @@
-from .. import test_environment 
+from .. import environment 
 
 def tests():
 	#test under six possible cases i.e coordinates going to far left, right, up, down, both coordinates going away

@@ -2,12 +2,12 @@
 
 import sys
 import numpy as np
-sys.path.append('./learn')
+#sys.path.append('./learn')
 #from test_environment import *
 from matplotlib import pyplot as plt
 import pdb
 
-from learn import test_environment as te
+from . import environment as te
 
 
 gamma = 0.2 	#discount factor
