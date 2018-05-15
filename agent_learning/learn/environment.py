@@ -113,7 +113,7 @@ def end_location():
 	end_location = x_coordinate, y_coordinate
 	return (end_location)
 
-"""
+
 def tests():
 	#test under six possible cases i.e coordinates going to far left, down, up, right, both coordinates going away
 	'''Test when agent is moving left'''
@@ -148,4 +148,4 @@ def tests():
 	assert agent_down(103, 105) == (100, 100)
 	assert agent_down(-10, -5) == (0, 0)
 
-"""
+tests()
