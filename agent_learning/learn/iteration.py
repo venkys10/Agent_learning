@@ -7,7 +7,7 @@ sys.path.append('..')
 from matplotlib import pyplot as plt
 import pdb
 
-from learn import environment as te
+from learn import test_environment as te
 
 
 gamma = 0.2 	#discount factor
