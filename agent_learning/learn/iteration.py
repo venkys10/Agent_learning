@@ -14,13 +14,14 @@ gamma = 0.2 	#discount factor
 prob = 0.8 		#probability of taking action
 reward = -2
 
-# te.world = np.full((10,10), float(0))
-# waypoints = ([1,2],[2,5],[5,7], [8,8])
+te.world = np.full((10,10), float(0))
+waypoints = ([1,2],[2,5],[5,7], [8,8])
 
-# for i,j in waypoints:
-# 	te.world[i][j] = 70
+for i,j in waypoints:
+	te.world[i][j] = 70
 
-# te.world[9,9] = 30 
+te.world[9,9] = 30 
+print (te.world)
 
 def rewards():
 	""" This function assigns rewards to all the cells in environment"""
@@ -54,6 +55,8 @@ def max_value(x,y):
 	y_coord_l = te.agent_left(x,y)[1]
 
 	values = (te.world[x_coord_u][y_coord_u], te.world[x_coord_d][y_coord_d], te.world[x_coord_r][y_coord_r], te.world[x_coord_l][y_coord_l])
+
+
 	if values[0] >= (values[1] and values[2] and values[3]):
 		i,j = te.agent_up(x,y)
 		return (te.world[i][j])		#gives the value of the cell in the world on top of the current cell
@@ -66,6 +69,7 @@ def max_value(x,y):
 	elif values[3] > (values[0] and values[1] and values[2]):
 		i,j = te.agent_left(x,y)
 		return (te.world[i][j])
+
 
 def env_motion_start(x, y):
 	""" This function tells the agent what action to take when it is in the test environment 
@@ -82,5 +86,5 @@ def env_motion_start(x, y):
 	# return (te.world)
 	
 if __name__ == '__main__':
-	print (max_value(2,2))
+	print (max_value(9,8))
 	#env_motion_start(5,7)

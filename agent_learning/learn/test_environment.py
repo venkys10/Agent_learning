@@ -14,16 +14,16 @@ world = np.full((100,100), float(0))
 def agent_right(i,j):
 	for x in range(len(world)):
 		#pdb.set_trace()
-		if j >= 100:
-			j = 100 
-		elif j <= 0:
+		if j >= len(world)-1:
+			j = len(world)-1 
+		elif j < 0:
 			j = 0
 		else:
 			j = j + 1
 
-		if i >= 100:
-			i = 100
-		elif i <= 0:
+		if i > len(world)-1:
+			i = len(world)-1
+		elif i < 0:
 			i = 0
 		return (i,j)
 		#plt.plot(i,j,'ro')
@@ -32,16 +32,16 @@ def agent_right(i,j):
 """The motion of the agent when it is supposed to move left by one step at a time."""
 def agent_left(i,j):
 	for x in range(len(world)):
-		if j >= 100:
-			j = 100 
+		if j > len(world)-1:
+			j = len(world)-1 
 		elif j <= 0:
 			j = 0
 		else:
 			j = j - 1
 
-		if i >= 100:
-			i = 100
-		elif i <= 0:
+		if i > len(world)-1:
+			i = len(world)-1
+		elif i < 0:
 			i = 0
 		return (i,j)
 			#plt.plot(i,j,'ro')
@@ -51,16 +51,16 @@ def agent_left(i,j):
 """The motion of the agent when it is supposed to move up by one step at a time."""
 def agent_up(i,j):
 	for x in range(len(world)): 
-		if i >= 100:
-			i = 100
+		if i > len(world)-1:
+			i = len(world)-1
 		elif i <= 0:
 			i = 0
 		else:
 			i = i - 1
 		
-		if j >= 100:
-			j = 100
-		elif j <= 0:
+		if j > len(world)-1:
+			j = len(world)-1
+		elif j < 0:
 			j = 0
 		return (i,j)
 			#plt.plot(i,j,'ro')
@@ -69,14 +69,14 @@ def agent_up(i,j):
 """The motion of the agent when it is supposed to move down by one step at a time."""
 def agent_down(i,j):
 	for x in range(len(world)):
-		if j >= 100:
-			j = 100 
-		elif j <= 0:
+		if j > len(world)-1:
+			j = len(world)-1 
+		elif j < 0:
 			j = 0
 
-		if i >= 100:
-			i = 100
-		elif i <= 0:
+		if i >= len(world)-1:
+			i = len(world)-1
+		elif i < 0:
 			i = 0
 		else:
 			i = i + 1
@@ -119,33 +119,34 @@ def tests():
 	'''Test when agent is moving left'''
 	assert agent_left(5,-1) == (5,0)	
 	assert agent_left(-10, 50) == (0, 49)	
-	assert agent_left(10, 150) == (10, 100)
-	assert agent_left(105, 50) == (100, 49)
-	assert agent_left(106, 107) == (100, 100)
+	assert agent_left(10, 150) == (10, 99)
+	assert agent_left(105, 50) == (99, 49)
+	assert agent_left(106, 107) == (99, 99)
 	assert agent_left(-10, -50) == (0, 0)
 
 	'''Test when agent is moving right'''
-	assert agent_right(5,102) == (5,100)	#test when y_coordinate is going above grid
-	assert agent_right(105,10) == (100,11)
+	assert agent_right(5,102) == (5,99)	#test when y_coordinate is going above grid
+	assert agent_right(105,10) == (99,11)
 	assert agent_right(-5,90) == (0,91)
 	assert agent_right(5,-6) == (5,0)	#test when both coordinates leave grid
-	assert agent_right(105, 150) == (100, 100)
+	assert agent_right(105, 150) == (99, 99)
 	assert agent_right(-10, -50) == (0, 0)
 
 	'''Test when agent is moving up'''
 	assert agent_up(20,-10) == (19,0)		#test when y_coordinate is going to the up end of grid
-	assert agent_up(20, 110) == (19,100)
+	assert agent_up(20, 110) == (19,99)
 	assert agent_up(-20, 90) == (0,90)
-	assert agent_up(120, 90) == (100,90)	#test when y_coordinate is going to the down end of grid
-	assert agent_up(120, 110) == (100,100)
+	assert agent_up(120, 90) == (99,90)	#test when y_coordinate is going to the down end of grid
+	assert agent_up(120, 110) == (99,99)
 	assert agent_up(-8, -10) == (0,0)
 
 	'''Test when agent is moving to the down'''
-	assert agent_down(20, 120) == (21, 100)	#test when y_coordinate is going to the down end of grid
+	assert agent_down(20, 120) == (21, 99)	#test when y_coordinate is going to the down end of grid
 	assert agent_down(-10, 50) == (0, 50)		#test when x_coordinate goes to the left end of grid
-	assert agent_down(105, 50) == (100, 50)
+	assert agent_down(105, 50) == (99, 50)
 	assert agent_down(10, -5) == (11, 0)
-	assert agent_down(103, 105) == (100, 100)
+	assert agent_down(103, 105) == (99, 99)
 	assert agent_down(-10, -5) == (0, 0)
+	assert agent_down(99, 90) == (99,90)
 
 tests()
