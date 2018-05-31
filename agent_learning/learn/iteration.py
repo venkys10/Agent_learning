@@ -40,8 +40,7 @@ def rewards():
 	return (te.world)
 
 def max_value(x,y):
-	""" This function gets maximum value of all adjacent cells to the agent
-	TODO: optimize this part """
+	""" This function gets maximum value of all adjacent cells to the agent """
 	x_coord_u = te.agent_up(x,y)[0]
 	y_coord_u = te.agent_up(x,y)[1]
 
@@ -57,17 +56,28 @@ def max_value(x,y):
 	values = (te.world[x_coord_u][y_coord_u], te.world[x_coord_d][y_coord_d], te.world[x_coord_r][y_coord_r], te.world[x_coord_l][y_coord_l])
 
 
-	if values[0] >= (values[1] and values[2] and values[3]):
+	assert te.agent_up(8,9) == (7,9) 
+	assert te.agent_down(8,9) == (9,9)
+	assert te.agent_right(8,9) == (8,9)
+	assert te.agent_left(8,9) == (8,8)
+
+	print (values[0], values[1], values[2], values[3])
+
+	if (values[0] >= values[1]) and (values[0] >= values[2]) and (values[0] >= values[3]):	#having d > (a and b and c) doesn't work, it needs to be split individually
 		i,j = te.agent_up(x,y)
+		print ("up")
 		return (te.world[i][j])		#gives the value of the cell in the world on top of the current cell
-	elif values[1] > (values[0] and values[2] and values[3]):
+	elif (values[1] > values[0]) and (values[1] > values[2]) and (values[1] > values[3]):
 		i,j = te.agent_down(x,y)
+		print ("down")
 		return (te.world[i][j])
-	elif values[2] > (values[0] and values[1] and values[3]):
+	elif (values[2] > values[0]) and (values[2] > values[1]) and (values[2] > values[3]):
 		i,j = te.agent_right(x,y)
+		print ("right")
 		return (te.world[i][j])
-	elif values[3] > (values[0] and values[1] and values[2]):
+	elif (values[3] > values[0]) and (values[3] > values[1]) and (values[3] > values[2]):
 		i,j = te.agent_left(x,y)
+		print ("left")
 		return (te.world[i][j])
 
 
@@ -86,5 +96,5 @@ def env_motion_start(x, y):
 	# return (te.world)
 	
 if __name__ == '__main__':
-	print (max_value(9,8))
+	print (max_value(8, 9))
 	#env_motion_start(5,7)
