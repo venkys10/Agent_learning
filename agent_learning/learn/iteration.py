@@ -79,6 +79,9 @@ def max_value(x,y):
 		i,j = te.agent_left(x,y)
 		print ("left")
 		return (te.world[i][j])
+	else:
+		i,j = te.agent_up(x,y)
+		return (te.world[i][j])
 
 
 def env_motion_start(x, y):
@@ -86,15 +89,17 @@ def env_motion_start(x, y):
 	TODO: develop complete algorithm"""
 	
 	rewards()	#Initialize all rewards 
+	count = 0
+	for i in range(len(te.world)):
+		for j in range(len(te.world)):
+			#pdb.set_trace()
+			count = count + 1 
+			print (count)
+			te.world[i][j] += prob * (reward + gamma * max_value(i,j))
 
-	# for i in range(len(te.world)):
-	# 	for j in range(len(te.world)):
-	# 		#pdb.set_trace()
-	# 		te.world[i][j] += prob * (reward + gamma * max_value(x,y))
-
-	# print (te.world)
+	print (te.world)
 	# return (te.world)
 	
 if __name__ == '__main__':
-	print (max_value(8, 9))
-	#env_motion_start(5,7)
+	#print (max_value(10, 10))
+	env_motion_start(5,7)
