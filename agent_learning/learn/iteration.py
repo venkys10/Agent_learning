@@ -9,19 +9,21 @@ import pdb
 
 from learn import test_environment as te
 
+import time
+
 
 gamma = 0.2 	#discount factor
 prob = 0.8 		#probability of taking action
 reward = -2
 
-te.world = np.full((10,10), float(0))
+te.world = np.full((1000,1000), float(0))
 waypoints = ([1,2],[2,5],[5,7], [8,8])
 
 for i,j in waypoints:
 	te.world[i][j] = 70
 
 te.world[9,9] = 30 
-print (te.world)
+#print (te.world)
 
 def rewards():
 	""" This function assigns rewards to all the cells in environment"""
@@ -56,28 +58,28 @@ def max_value(x,y):
 	values = (te.world[x_coord_u][y_coord_u], te.world[x_coord_d][y_coord_d], te.world[x_coord_r][y_coord_r], te.world[x_coord_l][y_coord_l])
 
 
-	assert te.agent_up(8,9) == (7,9) 
-	assert te.agent_down(8,9) == (9,9)
-	assert te.agent_right(8,9) == (8,9)
-	assert te.agent_left(8,9) == (8,8)
+	# assert te.agent_up(8,9) == (7,9) 
+	# assert te.agent_down(8,9) == (9,9)
+	# assert te.agent_right(8,9) == (8,9)
+	# assert te.agent_left(8,9) == (8,8)
 
-	print (values[0], values[1], values[2], values[3])
+	#print (values[0], values[1], values[2], values[3])
 
 	if (values[0] >= values[1]) and (values[0] >= values[2]) and (values[0] >= values[3]):	#having d > (a and b and c) doesn't work, it needs to be split individually
 		i,j = te.agent_up(x,y)
-		print ("up")
+		#print ("up")
 		return (te.world[i][j])		#gives the value of the cell in the world on top of the current cell
 	elif (values[1] > values[0]) and (values[1] > values[2]) and (values[1] > values[3]):
 		i,j = te.agent_down(x,y)
-		print ("down")
+		#print ("down")
 		return (te.world[i][j])
 	elif (values[2] > values[0]) and (values[2] > values[1]) and (values[2] > values[3]):
 		i,j = te.agent_right(x,y)
-		print ("right")
+		#print ("right")
 		return (te.world[i][j])
 	elif (values[3] > values[0]) and (values[3] > values[1]) and (values[3] > values[2]):
 		i,j = te.agent_left(x,y)
-		print ("left")
+		#print ("left")
 		return (te.world[i][j])
 	else:
 		i,j = te.agent_up(x,y)
@@ -99,7 +101,10 @@ def env_motion_start(x, y):
 
 	print (te.world)
 	# return (te.world)
-	
+
+
 if __name__ == '__main__':
 	#print (max_value(10, 10))
+	start_time = time.time()
 	env_motion_start(5,7)
+	print("--- %s seconds ---" % (time.time() - start_time))	
